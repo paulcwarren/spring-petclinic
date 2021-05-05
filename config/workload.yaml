@@ -7,13 +7,14 @@ metadata:
     app.tanzu.vmware.com/workload-type: web
 spec:
   git:
-    # update when code is pushed to a new location
     url: https://github.com/scothis/spring-petclinic.git
     ref:
       branch: main
   env:
   - name: SPRING_PROFILES_ACTIVE
     value: mysql
+  - name: JAVA_TOOL_OPTIONS
+    value: "-Dspring.devtools.restart.enabled=true -Dspring.devtools.restart.poll-interval=2s -Dspring.devtools.restart.quiet-period=1s"
   resources:
     requests:
       memory: 1Gi
