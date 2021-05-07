@@ -10,7 +10,7 @@ def tanzu_develop(k8s_object, deps=["."], resource_deps=[], live_update=[]):
 apiVersion: apiextensions.k8s.io/v1
 kind: CustomResourceDefinition
 metadata:
-  name: tiltworkloadproxys.experimental.desktop.io
+  name: tiltworkloadproxys.experimental.desktop.local
 spec:
   group: experimental.desktop.io
   versions:
