@@ -43,7 +43,7 @@ spec:
     # 3. Fetch the image from the cluster
     ksvc_image_json_path = '{.spec.template.spec.containers[0].image}'
     ksvc_image = local_output('kubectl get ksvc ' + k8s_object + ' -o jsonpath=\'' + ksvc_image_json_path + '\'')
-    ksvc_image = ksvc_image.replace('@sha256', '') # 3rd party `file_sync_only` wants image-name:actualsha not image-name@sha246:actualsha
+    ksvc_image = ksvc_image.replace('@sha256', '') # 3rd party `file_sync_only` wants image-name:actualsha not image-name@sha256:actualsha
 
     # 4. Create an instance of the tilt workload proxy to represent the app
     twp_template = """
