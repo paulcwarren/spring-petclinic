@@ -12,7 +12,7 @@ kind: CustomResourceDefinition
 metadata:
   name: tiltworkloadproxys.experimental.desktop.local
 spec:
-  group: experimental.desktop.io
+  group: experimental.desktop.local
   versions:
     - name: v1
       served: true
@@ -37,7 +37,7 @@ spec:
     local("cat << EOF | kubectl apply -f - " + twp_crd + "EOF")
     
     # 2. Tell Tilt about it, so Tilt knows which container to update
-    k8s_kind('TiltWorkloadProxy', api_version='experimental.desktop.io/v1',
+    k8s_kind('TiltWorkloadProxy', api_version='experimental.desktop.local/v1',
             image_json_path="{.spec.image}")
 
     # 3. Fetch the image from the cluster
@@ -47,7 +47,7 @@ spec:
 
     # 4. Create an instance of the tilt workload proxy to represent the app
     twp_template = """
-apiVersion: "experimental.desktop.io/v1"
+apiVersion: "experimental.desktop.local/v1"
 kind: TiltWorkloadProxy
 metadata:
   name: {k8s_object}-twp
