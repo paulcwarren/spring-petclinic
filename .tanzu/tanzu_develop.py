@@ -57,7 +57,7 @@ spec:
     twp = twp_template.format(k8s_object=k8s_object, image=ksvc_image)
     local("cat << EOF | kubectl apply -f - " + twp + "EOF")
 
-    k8s_resource(k8s_object+'-twp', port_forwards=8080,
+    k8s_resource(k8s_object+'-twp', port_forwards=["8080:8080", "9005:9005"],
                 resource_deps=resource_deps,
                 extra_pod_selectors=[{'serving.knative.dev/service' : k8s_object}])
 
