@@ -6,6 +6,9 @@ metadata:
     app.kubernetes.io/name: spring-petclinic
     app.tanzu.vmware.com/workload-type: web
 spec:
+  metadata:
+    image_name: harbor-repo.vmware.com/kontinuedemo/spring-petclinic
+
   git:
     # update when code is pushed to a new location
     url: https://github.com/scothis/spring-petclinic.git
