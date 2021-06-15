@@ -3,7 +3,7 @@ load('ext://file_sync_only', 'file_sync_only')
 # -*- mode: Python -*-
 
 # live reload
-def tanzu_live_reload(k8s_object, manifest, image, deps=["."], live_update=[]):
+def tanzu_live_reload(k8s_object, manifest, image, resource_deps=[], deps=["."], live_update=[]):
 
     if k8s_object == "":
         fail("k8s_object must be specified")
@@ -16,6 +16,7 @@ def tanzu_live_reload(k8s_object, manifest, image, deps=["."], live_update=[]):
 
     k8s_kind('Workload', image_json_path='{.spec.metadata.image_name}')
     k8s_resource(k8s_object, port_forwards=["8080:8080", "9005:9005"],
+                resource_deps=resource_deps,
                 extra_pod_selectors=[{'serving.knative.dev/service' : k8s_object}])
 
     file_sync_only(image=image,
